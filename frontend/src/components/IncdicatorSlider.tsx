@@ -1,34 +1,71 @@
-import { useState, useMemo } from "react"
-import { Text } from '@gravity-ui/uikit'
+import { Flex, Slider, Text } from "@gravity-ui/uikit";
+import styles from "./styles.module.css";
+import { useState } from "react";
 
-const Indicator = ({ indicator } ) => {
-  const [value, setValue] = useState('1')
-  const color = useMemo(() => {
-    if (value === '1') {
-      return 'red'
-    }
-    else if (value === '2') {
-      return 'orange'
-    }
-    else if (value === '3') {
-      return 'yellow'
-    }
-    else if (value === '4') {
-      return 'lightgreen'
-    }
-    else if (value === '5') {
-      return 'green'
-    }
-  }, [value])
-
-  return (
-      <Text variant='header-1' style={{display: "flex", padding: 15, justifyContent: "space-between", alignItems: "center"}}>
-        <p style={{width: 400}}>{indicator.name}</p>
-        {<input type="range" min={1} max={5} step={1} value={value} style={{accentColor: color, width: 500 }} onChange={(ev) => setValue(ev.currentTarget.value)}/>}
-        {<input type="number" min={1} max={5} step={1} value={value} style={{width: 60, height: 60, borderRadius: 12, border: '1px solid black', textAlign: "center", fontSize: 16 }} onChange={(ev) => setValue(ev.currentTarget.value)}/>}
-      </Text>
-  )
+interface IndicatorProps {
+  indicator: {
+    id: number;
+    name: string;
+  };
+  employeeScore?: number;
+  managerScore?: number;
+  agreedScore?: number;
 }
 
+const Indicator = ({
+  indicator,
+  employeeScore = 0,
+  managerScore = 0,
+  agreedScore = 0,
+}: IndicatorProps) => {
+  console.log(indicator.name, agreedScore);
+  const [value, setValue] = useState(agreedScore);
 
-export default Indicator
+  // console.log(value);
+
+  return (
+    <Flex direction="column" gap={2} className={styles.indicatorContainer}>
+      <Text variant="body-2" className={styles.indicatorName}>
+        {indicator.name}
+      </Text>
+      <Flex direction="column" gap={2}>
+        {/* <Flex alignItems="center" gap={3}>
+          <Text className={styles.label}>Сотрудник:</Text>
+          <Slider
+            min={0}
+            max={5}
+            step={1}
+            value={employeeScore}
+            className={styles.slider}
+          />
+          <Text className={styles.scoreValue}>{employeeScore}</Text>
+        </Flex>
+        <Flex alignItems="center" gap={3}>
+          <Text className={styles.label}>Руководитель:</Text>
+          <Slider
+            min={0}
+            max={5}
+            step={1}
+            value={managerScore}
+            className={styles.slider}
+          />
+          <Text className={styles.scoreValue}>{managerScore}</Text>
+        </Flex> */}
+        <Flex alignItems="center" gap={3}>
+          <Text className={styles.label}>Согласовано:</Text>
+          <Slider
+            min={0}
+            max={5}
+            step={1}
+            value={value}
+            onUpdate={setValue}
+            className={styles.slider}
+          />
+          <Text className={styles.scoreValue}>{value}</Text>
+        </Flex>
+      </Flex>
+    </Flex>
+  );
+};
+
+export default Indicator;

@@ -1,11 +1,37 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 1120px;
-    margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding: 24px;
 }
 
 .wrapper_indicator {
-    display: flex;
+  display: flex;
+}
+
+.competenceCard {
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.competenceCard:hover {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+.competenceTitle {
+  margin-bottom: 20px;
+  color: #212529;
+  padding-bottom: 12px;
+  border-bottom: 3px solid #667eea;
+}
+
+.indicatorsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
