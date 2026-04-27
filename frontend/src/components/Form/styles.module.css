@@ -1,4 +1,6 @@
 .formCard {
+  width: 500px;
+  min-height: 300px;
   padding: 24px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 12px;
@@ -9,31 +11,68 @@
   width: 100%;
 }
 
-.formContent {
-  margin-top: 8px;
-}
-
 .fileInput {
   display: none;
 }
 
+.formContent {
+  display: flex;
+  gap: 12px;
+}
+
+
 .fileLabel {
-  display: inline-block;
-  padding: 12px 24px;
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  height: 44px;
+  padding: 0 16px;
+
   background-color: white;
   color: #667eea;
+
   border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  overflow: hidden;
 }
 
-.fileLabel:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
 
 .fileLabelText {
-  font-size: 14px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.submitButton {
+  flex: 1;
+
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #eab308;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+
+.resultsArea {
+  min-height: 150px;
+  max-height: 300px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
 }

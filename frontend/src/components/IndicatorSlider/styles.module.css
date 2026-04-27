@@ -1,0 +1,93 @@
+.indicatorContainer {
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border-left: 4px solid #667eea;
+  transition: all 0.2s ease;
+}
+
+.indicatorContainer:hover {
+  background-color: #e9ecef;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.indicatorName {
+  font-weight: 500;
+  color: #212529;
+  line-height: 1.5;
+}
+
+.label {
+  min-width: 120px;
+  font-size: 13px;
+  color: #495057;
+  font-weight: 500;
+}
+
+.slider {
+  flex: 1;
+  min-width: 200px;
+}
+
+.scoreValue {
+  width: 48px;
+  height: 32px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: #667eea;
+  background: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  outline: none;
+}
+
+.scoreValue::-webkit-outer-spin-button,
+.scoreValue::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.numberInput {
+  display: flex;
+  align-items: center;
+
+  height: 32px;
+
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden; 
+
+  background: #ffffff;
+}
+
+.numberInput button {
+  width: 32px;
+  height: 100%;
+
+  border: none;
+  background: rgba(255, 190, 92, 0.568);
+  color: #1f2937;
+
+  font-size: 16px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scoreValue {
+  width: 48px;
+  height: 100%;
+
+  border: none;
+  background: transparent;
+
+  text-align: center;
+  font-weight: 600;
+  color: #667eea;
+
+  outline: none;
+}

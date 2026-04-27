@@ -1,0 +1,22 @@
+.verdictButton {
+    display: flex;
+    width: 500px;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    justify-content: flex-start;
+    
+}
+
+.verdictButton :global(.g-button__text) {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  width: 100%;
+  text-align: left;
+}
