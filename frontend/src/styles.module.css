@@ -12,28 +12,17 @@
 }
 
 .competenceCard {
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  padding: 16px;
 }
 
-.competenceCard:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  transform: translateY(-2px);
-}
-
-.competenceTitle {
-  margin-bottom: 20px;
-  color: #212529;
-  padding-bottom: 12px;
-  border-bottom: 3px solid #667eea;
+.title {
+  color: var(--g-color-base-brand)
 }
 
 .indicatorsWrapper {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
 }
 
 

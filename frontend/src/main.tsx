@@ -1,11 +1,12 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-// import './index.css'
-import App from "./App.tsx";
 import { ThemeProvider } from "@gravity-ui/uikit";
 
-import "@gravity-ui/uikit/styles/fonts.css";
+import { ScoresProvider } from "~common/providers";
+import App from "./App";
+
 import "@gravity-ui/uikit/styles/styles.css";
+import "./styles.css";
 
 window.addEventListener("DOMContentLoaded", () => {
   const rootElement = document.getElementById("root");
@@ -18,8 +19,10 @@ window.addEventListener("DOMContentLoaded", () => {
 
   root.render(
     <StrictMode>
-      <ThemeProvider>
-        <App />
+      <ThemeProvider theme="light">
+        <ScoresProvider>
+          <App />
+        </ScoresProvider>
       </ThemeProvider>
     </StrictMode>,
   );

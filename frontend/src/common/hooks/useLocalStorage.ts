@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 
 const useLocalStorage = (key: string, initialValue = '') => {
   const [value, setValue] = useState(() => localStorage.getItem(key) ?? initialValue)
@@ -8,19 +8,19 @@ const useLocalStorage = (key: string, initialValue = '') => {
     setValue(newValue)
   }
 
-  const handleStorage = useCallback((event: StorageEvent) => {
-    if (event.key === key && event.storageArea === localStorage) {
-      setValue(event.newValue || initialValue)
-    }
-  }, [key, initialValue])
-
   useEffect(() => {
+    const handleStorage = (event: StorageEvent) => {
+      if (event.key === key && event.storageArea === localStorage) {
+        setValue(event.newValue || initialValue)
+      }
+    }
+
     window.addEventListener('storage', handleStorage)
 
     return () => {
       window.removeEventListener('storage', handleStorage)
     }
-  }, )
+  }, [key, initialValue])
 
   return [value, setItem] as const
 }

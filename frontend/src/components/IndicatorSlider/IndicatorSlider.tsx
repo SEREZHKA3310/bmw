@@ -1,69 +1,42 @@
-import { Flex, Slider, Text } from "@gravity-ui/uikit";
+import { useContext } from "react";
+import { Button, Card, Flex, Slider, Text } from "@gravity-ui/uikit";
+
+import { ScoresContext } from "~common/providers";
+
 import styles from "./styles.module.css";
-import { useEffect, useState } from "react";
+import { Minus, Plus } from "@gravity-ui/icons";
 
 interface IndicatorProps {
   indicator: {
     id: number;
     name: string;
-  };
-  employeeScore?: number;
-  managerScore?: number;
-  agreedScore?: number;
-  setScores: React.Dispatch<React.SetStateAction<Record<string, number>>>
+  }
 }
 
 const Indicator = ({
-  indicator,
-  employeeScore = 0,
-  managerScore = 0,
-  agreedScore = 0,
-  setScores
-}: IndicatorProps) => {
-  // console.log(indicator.name, agreedScore);
-  const [value, setValue] = useState(agreedScore);
+    indicator,
+  }: IndicatorProps) => {
+  const { scores, setScore } = useContext(ScoresContext);
+  const value = scores[indicator.id] ?? 0;
 
-  useEffect(() => {
-    console.log(agreedScore)
-    setValue(agreedScore ?? 0);
-  }, [agreedScore]);
-
- useEffect(() => {
-  // console.log(indicator.id, value)
-  setScores((prev) => ({
-    ...prev,
-    [indicator.id]: value
-  }));
-}, [value, setScores, indicator.id]);
+  const editScore = (id: number, score: number) => {
+    if (score >= 5) {
+      setScore(id, 5)
+    }
+    else if (score <= 0) {
+      setScore(id, 0)
+    }
+    else {
+      setScore(id, score)
+    }
+  }
 
   return (
-    <Flex direction="column" gap={2} className={styles.indicatorContainer}>
+    <Card view="raised" className={styles.container}>
       <Text variant="body-2" className={styles.indicatorName}>
         {indicator.name}
       </Text>
       <Flex direction="column" gap={2}>
-        {/* <Flex alignItems="center" gap={3}>
-          <Text className={styles.label}>Сотрудник:</Text>
-          <Slider
-            min={0}
-            max={5}
-            step={1}
-            value={employeeScore}
-            className={styles.slider}
-          />
-          <Text className={styles.scoreValue}>{employeeScore}</Text>
-        </Flex>
-        <Flex alignItems="center" gap={3}>
-          <Text className={styles.label}>Руководитель:</Text>
-          <Slider
-            min={0}
-            max={5}
-            step={1}
-            value={managerScore}
-            className={styles.slider}
-          />
-          <Text className={styles.scoreValue}>{managerScore}</Text>
-        </Flex> */}
         <Flex alignItems="center" gap={3}>
           <Text className={styles.label}>Согласовано:</Text>
           <Slider
@@ -71,40 +44,26 @@ const Indicator = ({
             max={5}
             step={1}
             value={value}
-            onUpdate={setValue}
+            onUpdate={(score) => setScore(indicator.id, score)}
             className={styles.slider}
             marks={[0, 1, 2, 3, 4, 5]}
           />
-          <div className={styles.numberInput}>
-            <button
-              type="button"
-              onClick={() => setValue(value - 1)}
-              disabled={value <= 0}
-            >
-              -
-            </button>
-
-            <input
-              className={styles.scoreValue}
-              type="number"
-              min={0}
-              max={5}
-              step={1}
-              value={value}
-              onChange={(ev) => setValue(+ev.currentTarget.value)}
-            />
-
-            <button
-              type="button"
-              onClick={() => setValue(value + 1)}
-              disabled={value >= 5}
-            >
-              +
-            </button>
+          <div className={styles.editScore}>
+            <Button view="outlined" pin="round-clear">
+              <Button.Icon>
+                <Minus onClick={() => value <= 0 ? 0 : setScore(indicator.id, value - 1)} />
+              </Button.Icon>
+            </Button>
+            <input className={styles.scoreValue} type="number" min={0} max={5} step={1} value={value} onChange={(ev) => editScore(indicator.id, +ev.currentTarget.value)} />
+            <Button view="outlined" pin="clear-round">
+              <Button.Icon>
+                <Plus onClick={() => value >= 5 ? 5 : setScore(indicator.id, value + 1)}/>
+              </Button.Icon>
+            </Button>
           </div>
       </Flex>
       </Flex>
-    </Flex>
+    </Card>
   );
 };
 
