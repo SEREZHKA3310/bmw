@@ -41,6 +41,7 @@
 
     --g-color-text-brand: var(--g-color-private-brand-700-solid);
     --g-color-text-brand-heavy: var(--g-color-private-brand-700-solid);
+    --g-color-text-brand-contrast: var(--g-color-text-light-primary);
     --g-color-text-link: var(--g-color-private-brand-600-solid);
     --g-color-text-link-hover: var(--g-color-private-brand-800-solid);
     --g-color-text-link-visited: var(--g-color-private-purple-550-solid);
@@ -98,4 +99,9 @@
     --g-color-base-selection: var(--g-color-private-brand-150);
     --g-color-base-selection-hover: var(--g-color-private-brand-200);
     --g-color-line-brand: var(--g-color-private-brand-600-solid);
+}
+
+body {
+    margin: 0;
+    background: #5694ff0a !important;
 }

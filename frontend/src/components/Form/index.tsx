@@ -64,7 +64,6 @@ const Form: FC = () => {
             ))}
            </div>
           <Flex gap={3} alignItems="center" className={styles.formContent}>
-            <label htmlFor="file-upload" className={styles.fileLabel}>
               <input
                 type="file"
                 name="file"
@@ -73,19 +72,17 @@ const Form: FC = () => {
                 className={styles.fileInput}
                 onChange={handleFileChange}
               />
-              <span className={styles.fileLabelText}>{fileLabel}</span>
-            </label>
-            <Button type="submit" view="action" size="m" className={styles.submitButton}>
-              Обработать
-            </Button>
+            <Button className={styles.fileChange} component="label" htmlFor="file-upload" size="l" view="outlined" title={fileLabel}>{fileLabel}</Button>
             <Button
               type="button"
               view="outlined"
-              size="m"
-              className={styles.submitButton}
+              size="l"
               onClick={() => setScores(Object.fromEntries(Object.entries(scores).map(([key]) => [key, 0])))}
             >
               Сбросить
+            </Button>
+            <Button type="submit" view="action" size="l">
+              Обработать
             </Button>
           </Flex>
         </div>

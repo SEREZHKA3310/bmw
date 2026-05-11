@@ -32,7 +32,7 @@ const Indicator = ({
   }
 
   return (
-    <Card view="raised" className={styles.container}>
+    <Card className={styles.container}>
       <Text variant="body-2" className={styles.indicatorName}>
         {indicator.name}
       </Text>

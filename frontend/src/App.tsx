@@ -8,11 +8,12 @@ import { competences, indicators } from './consts/index'
 const App = () => {
   return (
     <div className={styles.container}>
-      <div>
+      <Card className={styles.title}><h1>BMW. Система методических рекомендаций</h1></Card>
+      <div className={styles.competences}>
         {competences.map((competence, i) => (
-          <Card key={i} className={styles.competenceCard}>
+          <Card key={i} view="outlined" className={styles.competenceCard}>
             <h2 className={styles.title}>{competence.name}</h2>
-            <div className={styles.indicatorsWrapper}>
+            <div className={styles.indicators}>
               {competence.indicator_ids.map((id) => {
                 return indicators
                   .filter((indicator) => indicator.id === id)
@@ -28,9 +29,7 @@ const App = () => {
           </Card>
         ))}
       </div>
-      <div>
-        <Form />
-      </div>
+      <Form />
     </div>
   );
 };
