@@ -9,8 +9,17 @@
   top: var(--g-spacing-4);
 }
 
-.content {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.header h2 {
+  margin: 0;
+}
+
+.content {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -24,11 +33,8 @@
   width: 130px;
 
   > span {
-    text-align: left;
-    white-space: nowrap;  
     overflow: hidden;
     text-overflow: ellipsis;
-    text-align: left;
   }
 }
 
@@ -66,8 +72,6 @@
 }
 
 .resultsArea {
-  flex: 1;
-
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 
@@ -77,4 +81,5 @@
 
   overflow-y: auto;
   max-block-size: calc(100vh - var(--g-spacing-4) * 2 - 130px);
+  margin-block: var(--g-spacing-4);
 }
