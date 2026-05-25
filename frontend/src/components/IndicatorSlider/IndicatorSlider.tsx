@@ -10,26 +10,22 @@ interface IndicatorProps {
   indicator: {
     id: number;
     name: string;
-  }
+  };
 }
 
-const Indicator = ({
-    indicator,
-  }: IndicatorProps) => {
+const Indicator = ({ indicator }: IndicatorProps) => {
   const { scores, setScore } = useContext(ScoresContext);
   const value = scores[indicator.id] ?? 0;
 
   const editScore = (id: number, score: number) => {
     if (score >= 5) {
-      setScore(id, 5)
+      setScore(id, 5);
+    } else if (score <= 0) {
+      setScore(id, 0);
+    } else {
+      setScore(id, score);
     }
-    else if (score <= 0) {
-      setScore(id, 0)
-    }
-    else {
-      setScore(id, score)
-    }
-  }
+  };
 
   return (
     <Card className={styles.container}>
@@ -49,19 +45,41 @@ const Indicator = ({
             marks={[0, 1, 2, 3, 4, 5]}
           />
           <div className={styles.editScore}>
-            <Button view="outlined" pin="round-clear">
+            <Button
+              view="outlined"
+              pin="round-clear"
+              onClick={() =>
+                value <= 0 ? 0 : setScore(indicator.id, value - 1)
+              }
+            >
               <Button.Icon>
-                <Minus onClick={() => value <= 0 ? 0 : setScore(indicator.id, value - 1)} />
+                <Minus />
               </Button.Icon>
             </Button>
-            <input className={styles.scoreValue} type="number" min={0} max={5} step={1} value={value} onChange={(ev) => editScore(indicator.id, +ev.currentTarget.value)} />
-            <Button view="outlined" pin="clear-round">
+            <input
+              className={styles.scoreValue}
+              type="number"
+              min={0}
+              max={5}
+              step={1}
+              value={value}
+              onChange={(ev) =>
+                editScore(indicator.id, +ev.currentTarget.value)
+              }
+            />
+            <Button
+              view="outlined"
+              pin="clear-round"
+              onClick={() =>
+                value >= 5 ? 5 : setScore(indicator.id, value + 1)
+              }
+            >
               <Button.Icon>
-                <Plus onClick={() => value >= 5 ? 5 : setScore(indicator.id, value + 1)}/>
+                <Plus />
               </Button.Icon>
             </Button>
           </div>
-      </Flex>
+        </Flex>
       </Flex>
     </Card>
   );
